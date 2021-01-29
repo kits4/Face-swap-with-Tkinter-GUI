@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 from BrowseFiles import browseFile
+from SwapFace import SwapFace
 
 root = Tk()
 width = root.winfo_screenwidth()
@@ -9,9 +10,9 @@ height = root.winfo_screenheight()
 screen_resolution = "{}x{}+{}+{}".format(width, height, 0, 0)
 root.title("Face Swap")
 root.geometry(screen_resolution)
-root.wm_iconbitmap("icon.ico")
+root.wm_iconbitmap("./Images/icon.ico")
 
-load = Image.open("final.png")
+load = Image.open("./Images/final.png")
 load = load.resize((width, height), Image.LANCZOS)
 render = ImageTk.PhotoImage(load)
 
@@ -32,8 +33,8 @@ view = Button(root, text="View", fg="white", bg="blue", width=15, height=3, reli
 view.place(x=400, y=300)
 view.bind("<Button-1>",browseFile)
 
-# Filters = Button(root, text="Filters", fg="white", bg="blue", width=15, height=3,relief='ridge',borderwidth=7)
-# Filters.place(x=670, y=470)
-# Filters.bind("<Button-1>",lol33)
+refSwap = Button(root, text="Reference Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
+refSwap.place(x=670, y=470)
+refSwap.bind("<Button-1>", SwapFace)
 
 root.mainloop()
