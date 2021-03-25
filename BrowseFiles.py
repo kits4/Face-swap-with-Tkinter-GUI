@@ -1,4 +1,5 @@
 from tkinter.filedialog import askopenfilename
+
 def browseFile(event):
 
     filename = askopenfilename(filetypes=(("Jpeg images","*.jpg"),("PNG images","*.png"),("All Files","*.*")))

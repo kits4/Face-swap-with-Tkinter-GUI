@@ -74,7 +74,7 @@ class RefFaceSwapping(BaseFaceSwapping):
         keypoints = self.find_keypoints(img)
         h, w, _ = self.ref_img.shape
         new_img = img.copy()
-        self.clone_mode = 2
+        self.clone_mode = 3
         for points in keypoints:
             new_img = self.swap_faces(self.ref_img, self.ref_keypoints, new_img,
                                       points, self.ref_traingles_indxs, self.clone_mode)
