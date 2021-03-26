@@ -22,10 +22,9 @@ def VideoSwap(event):
            downloads_path = str(Path.home() / "Downloads")
            img_path = downloads_path + "\\video_input_" + timestr + ".jpeg"
            cv2.imwrite(img_path, frame)
-           SwapFace(None, img_path)
-           break
-    print("hiiiii")
-    try: 
-        os.remove(img_path)
-    except: pass
-    cap.release()
+           cap.release()
+           return img_path
+    # try: 
+    #     os.remove(img_path)
+    # except: pass
+    

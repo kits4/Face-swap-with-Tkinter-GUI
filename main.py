@@ -3,10 +3,11 @@ from pathlib import Path
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-from BrowseFiles import browseFile
+from BrowseFiles import BrowseFiles
 from SwapFace import SwapFace
 from VideoSwap import VideoSwap
-
+from OneWaySwap import OneWaySwap
+import config
 if(not os.path.exists(str(Path.home() / "OneDrive" / "Pictures" / "Face_Swap"))):
     os.chdir(str(Path.home() / "OneDrive" /"Pictures"))
     os.mkdir("Face_Swap")
@@ -39,14 +40,23 @@ img.place(x=0, y=0)
 input_img = './Images/input.jpeg'
 view = Button(root, text="View", fg="white", bg="blue", width=15, height=3, relief='ridge',borderwidth=7)
 view.place(x=400, y=300)
-view.bind("<Button-1>",browseFile)
+view.bind("<Button-1>",BrowseFiles)
 
-refSwap = Button(root, text="Reference Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
-refSwap.place(x=670, y=470)
-refSwap.bind("<Button-1>", lambda eff: SwapFace(eff, input_img))
 
-videoSwap = Button(root, text="Video Input", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
-videoSwap.place(x=870, y=470)
-videoSwap.bind("<Button-1>", VideoSwap)
+# refSwap = Button(root, text="Reference Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
+# refSwap.place(x=670, y=470)
+# refSwap.bind("<Button-1>", lambda eff: SwapFace(eff, input_img))
+
+# videoSwap = Button(root, text="Video Input", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
+# videoSwap.place(x=870, y=470)
+# videoSwap.bind("<Button-1>", VideoSwap)
+
+oneWaySwap = Button(root, text="One Way Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
+oneWaySwap.place(x=670, y=270)
+oneWaySwap.bind("<Button-1>", OneWaySwap)
+
+twoWaySwap = Button(root, text="Two Way Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
+twoWaySwap.place(x=870, y=270)
+twoWaySwap.bind("<Button-1>", twoWaySwap)
 
 root.mainloop()

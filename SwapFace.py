@@ -6,9 +6,9 @@ from PIL import Image, ImageTk
 from matplotlib import pyplot as plt
 from fswap import RefFaceSwapping , TwoFaceSwapping
 
-def SwapFace(event, input_img):
-    face_swapping = RefFaceSwapping(reference_path='./Images/reference.png')
-    img = face_swapping.load_img(input_img)
+def SwapFace(event, input1, input2):
+    face_swapping = RefFaceSwapping(reference_path = input2)
+    img = face_swapping.load_img(input1)
     img_swap = face_swapping(img)
     img_swap = cv2.cvtColor(img_swap, cv2.COLOR_BGR2RGB)
     timestr = time.strftime("%Y%m%d_%H%M%S")
@@ -29,4 +29,3 @@ def SwapFace(event, input_img):
     img12 = Label(root1, image=ren)
     img12.image = ren
     img12.place(x=0, y=0)
-    
