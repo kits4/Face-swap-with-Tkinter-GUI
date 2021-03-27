@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from tkinter import *
 from tkinter import ttk
+from ttkthemes import themed_tk as tkt
+# from ttkthemes import ThemedStyle, ThemedTk
 from PIL import Image, ImageTk
 from BrowseFiles import BrowseFiles
 from SwapFace import SwapFace
@@ -13,7 +15,17 @@ if(not os.path.exists(str(Path.home() / "OneDrive" / "Pictures" / "Face_Swap")))
     os.mkdir("Face_Swap")
     print("ossss")
 
-root = Tk()
+root = Tk()     
+# root.set_theme("plastik")  
+style = ttk.Style()
+style.theme_use('alt')
+style.configure('TButton', focuscolor = "red", foreground='blue', background='red', font=('Helvetica', 20))
+style.map('TButton', background=[('active','yellow')], focuscolor=[('active','yellow')])
+style.configure('TCheckbutton', focuscolor = "#FFD800", foreground= 'black', background='#FFD800', font=('Helvetica', 15))
+style.map('TCheckbutton', background=[('active','#FFD800')], indicatoron=[('pressed', 'red'), ('selected', 'red')])
+style.configure('submit.TButton', foreground='black', background='#47C7EB', font=('Helvetica', 15))
+style.map('submit.TButton', background=[('active','#C8D9CD')])
+# C5E1E4
 width = root.winfo_screenwidth()
 height = root.winfo_screenheight()
 screen_resolution = "{}x{}+{}+{}".format(width, height, 0, 0)
@@ -24,9 +36,9 @@ root.wm_iconbitmap("./Images/icon.ico")
 load = Image.open("./Images/final.png")
 load = load.resize((width, height), Image.LANCZOS)
 render = ImageTk.PhotoImage(load)
-
+# load.save("./Images/r.png")
 # labels can be text or images
-img = Label(root, image=render)
+img = ttk.Label(root, image=render)
 img.image = render
 img.place(x=0, y=0)
 
@@ -37,9 +49,9 @@ img.place(x=0, y=0)
 # app=Button(root,text="AVATARS",fg="white", bg="blue", width=15, height=3,relief='ridge',borderwidth=7)
 # app.bind("<Button-1>",charselect)
 # app.place(x=670,y=340)
-input_img = './Images/input.jpeg'
-view = Button(root, text="View", fg="white", bg="blue", width=15, height=3, relief='ridge',borderwidth=7)
-view.place(x=400, y=300)
+# img = PhotoImage(file = "./Images/f.png")
+view = tkt.ttk.Button(root, text="View")
+view.place(x=473, y=250)
 view.bind("<Button-1>",BrowseFiles)
 
 
@@ -53,10 +65,10 @@ view.bind("<Button-1>",BrowseFiles)
 
 oneWaySwap = Button(root, text="One Way Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
 oneWaySwap.place(x=670, y=270)
-oneWaySwap.bind("<Button-1>", OneWaySwap)
+oneWaySwap.bind("<Button-1>", lambda eff: OneWaySwap(eff, 1))
 
 twoWaySwap = Button(root, text="Two Way Swap", fg="white", bg="blue", width=15, height=3, relief='ridge', borderwidth=3)
 twoWaySwap.place(x=870, y=270)
-twoWaySwap.bind("<Button-1>", twoWaySwap)
+twoWaySwap.bind("<Button-1>", lambda eff: OneWaySwap(eff, 2))
 
 root.mainloop()

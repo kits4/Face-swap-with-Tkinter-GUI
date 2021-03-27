@@ -1,3 +1,4 @@
+import os
 import cv2
 import time
 from pathlib import Path
@@ -6,8 +7,13 @@ from PIL import Image, ImageTk
 from matplotlib import pyplot as plt
 from fswap import RefFaceSwapping , TwoFaceSwapping
 
-def SwapFace(event, input1, input2):
-    face_swapping = RefFaceSwapping(reference_path = input2)
+def SwapFace(event, input1, input2, select):
+    global face_swapping
+    if(select == 1):
+        face_swapping = RefFaceSwapping(reference_path = input2)
+    else:
+        face_swapping = TwoFaceSwapping(reference_path = input2)
+
     img = face_swapping.load_img(input1)
     img_swap = face_swapping(img)
     img_swap = cv2.cvtColor(img_swap, cv2.COLOR_BGR2RGB)
@@ -17,13 +23,14 @@ def SwapFace(event, input1, input2):
     cv2.imwrite(img_path, img_swap)
 
     root1=Toplevel()
-    width=800
-    height=800
+    root1.focus_force()
+    width=640
+    height=480
     root1.wm_iconbitmap("./Images/icon.ico")
     lo = Image.open(img_path)
-    lo = lo.resize((width, height), Image.LANCZOS)
+    lo.thumbnail((min(width, lo.width), min(lo.height, height) ), Image.ANTIALIAS)
     ren = ImageTk.PhotoImage(lo)
-    resolution=str(width)+'x'+str(height)
+    resolution=str(lo.width)+'x'+str(lo.height)
     root1.geometry(resolution)
     
     img12 = Label(root1, image=ren)

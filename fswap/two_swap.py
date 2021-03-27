@@ -108,6 +108,7 @@ class TwoFaceSwapping(BaseFaceSwapping):
         h, w, _ = self.ref_img.shape
         
         new_img = img.copy()
+        self.clone_mode = 3
         if len(keypoints) >= 2:
             new_img = self.swap_faces(new_img, keypoints[0] , keypoints[1],
                                       self.ref_traingles_indxs, self.clone_mode)
