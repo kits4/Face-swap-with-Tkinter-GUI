@@ -54,13 +54,16 @@ def OneWaySwapProcess(title, store):
     load.thumbnail((400, 400), Image.ANTIALIAS)
     render = ImageTk.PhotoImage(load)
 
-    resolution=str(load.width)+'x'+str(load.height) + '+' + str(250) + '+'+ str(250)
+    resolution=str(load.width)+'x'+str(load.height) + '+' + str(100) + '+'+ str(80)
     root2.geometry(resolution)
 
     img = Label(root2, image=render)
     img.image = render
     img.place(x=0, y=0)
     img.pack()
+
+    header = ttk.Label(root2, text=title, style = "k.TLabel")
+    header.place(relx=0.5, rely=0.25, anchor=CENTER)
 
     c1 = ttk.Checkbutton(root2, text='Image', variable=var1, onvalue=1, offvalue=0, command=Image1)
     c1.pack()
@@ -77,8 +80,8 @@ def OneWaySwapProcess(title, store):
     root2.mainloop()
 
 def OneWaySwap(event, select):
-    OneWaySwapProcess("First Input", config.oneWaySwapInput1)
-    OneWaySwapProcess("Second Input", config.oneWaySwapInput2)
+    OneWaySwapProcess("Upload 1st Face", config.oneWaySwapInput1)
+    OneWaySwapProcess("Upload 2nd Face",config.oneWaySwapInput2)
     if select == 1:
         SwapFace(None, config.oneWaySwapInput1[0], config.oneWaySwapInput2[0], 1)
     else:

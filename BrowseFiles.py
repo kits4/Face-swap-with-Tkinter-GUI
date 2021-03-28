@@ -7,8 +7,10 @@ def BrowseFiles(event, check):
 
     if(check == "view"):
         root1=Toplevel()
+        root1.focus_set()
         root1.wm_iconbitmap("./Images/icon.ico")
         lo = Image.open(filename)
+        lo.thumbnail((640, 480), Image.ANTIALIAS)
         ren = ImageTk.PhotoImage(lo)
         width=ren.width()
         height=ren.height()
