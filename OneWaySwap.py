@@ -15,7 +15,6 @@ def mouse_press(event, root):
 
 def mouse_motion(event, root):
     global x, y
-    # Positive offset represent the mouse is moving to the lower right corner, negative moving to the upper left corner
     offset_x, offset_y = event.x - x, event.y - y  
     new_x = root.winfo_x() + offset_x
     new_y = root.winfo_y() + offset_y
