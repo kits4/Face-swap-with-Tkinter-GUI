@@ -31,7 +31,7 @@ def Submit(store):
         store[0] = VideoSwap(None)
         store[1] = "video"
     else:
-        store[0] = BrowseFiles(None)
+        store[0] = BrowseFiles(None, "submit")
         store[1] = "image"
     root2.destroy()
     root2.quit()

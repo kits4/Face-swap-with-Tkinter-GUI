@@ -50,6 +50,6 @@ twoWaySwap.bind("<Button-1>", lambda eff: OneWaySwap(eff, 2))
 
 view = ttk.Button(root, text="View")
 view.place(relx=0.5, rely=0.7, anchor=CENTER, height = 40, width = 200)
-view.bind("<Button-1>",BrowseFiles)
+view.bind("<Button-1>",lambda eff: BrowseFiles(eff, "view"))
 
 root.mainloop()
